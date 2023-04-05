@@ -187,5 +187,5 @@ public static void main(String[] args) {
 	
 Al ser un proyecto Maven, sólo tengo que darle a ejecutar dentro de eclipse y podemos comprobar que funciona.
 
-<image src="/img/itWorks.png" alt="Funciona">
+![w:640](img/itWorks.png)
 
