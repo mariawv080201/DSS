@@ -14,8 +14,7 @@ public interface Knight {
 
 ```java
 public interface Quest {
-  abstract Object embark()
-    throws QuestFailedException;
+  abstract Object embark() throws QuestFailedException;
 }
 ```
 
@@ -75,5 +74,50 @@ He creado un archivo llamado applicationContext.xml con las dependencias. Este a
 </beans>
 ```
 
+A continuación he editado el código. Knight y Quest no los he modificado.
 
+En HolyGrailQuest he hecho que devuelva un objeto HolyGrail, cuya clase he creado, y le he dado propiedades al objeto.
+
+```java
+public class HolyGrailQuest implements Quest<HolyGrail> {
+	public HolyGrailQuest() { /*...*/ }
+	public HolyGrail embark() throws QuestFailedException {
+	    // Do whatever it means to embark on a quest
+	    return new HolyGrail("a grail that is so powerfull","the fairies",true);
+	}
+}
+```
+```java
+public class HolyGrail {
+	private String description;
+	private String origin;
+	private boolean hasPower;
+	  
+	public HolyGrail(String description, String origin, boolean hasPower) {
+		this.description = description;
+		this.origin = origin;
+		this.hasPower = hasPower;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	  
+	public String getOrigin() {
+		return origin;
+	}
+	
+	public boolean hasPower() {
+		return hasPower;
+	  }
+	  
+	public void use() {
+		if (hasPower) {
+			System.out.println("You feel the power of the Holy Grail!");
+		} else {
+			System.out.println("The Holy Grail has no power.");
+		}
+	}
+}
+```
 
