@@ -53,10 +53,26 @@ public class KnightOfTheRoundTable implements Knight {
 Usando eclipse, he creado un proyecto Maven. En pom.xml he añadido la dependencia de Spring:
 ```xml
 <dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-context</artifactId>
-	    <version>6.0.7</version>
-  	</dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-context</artifactId>
+	<version>6.0.7</version>
+</dependency>
+```
+
+He creado un archivo llamado applicationContext.xml con las dependencias. Este archivo especifica cómo se deben crear y configurar los objetos. Lo he situado en la carpeta src/main/java:
+```xml
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+  <bean id="knight" class="maria.DSSInyecciones.KnightOfTheRoundTable">
+    <constructor-arg value="Lancelot" />
+    <property name="quest" ref="quest" />
+  </bean>
+ 
+  <bean id="quest" class="maria.DSSInyecciones.HolyGrailQuest" />
+ 
+</beans>
 ```
 
 
