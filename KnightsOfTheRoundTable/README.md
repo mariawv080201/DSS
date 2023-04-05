@@ -121,3 +121,71 @@ public class HolyGrail {
 }
 ```
 
+En KnightOfTheRoundTable, ahora es un conjunto de elementos T que hereda de Knight<T> y sus atributos son un String name y un Quest<T> quest.
+	
+```java
+public class KnightOfTheRoundTable<T> implements Knight<T> {
+	private String name;
+	private Quest<T> quest;
+	
+	public KnightOfTheRoundTable(String name) {
+		this.name = name;
+	}
+	
+	public T embarkOnQuest() throws QuestFailedException {
+	    return quest.embark();
+	}
+	
+	public void setQuest(Quest<T> quest) {
+	    this.quest = quest;
+	}
+}
+```
+
+He tenido que crear una clase de excepción para que compile el programa ya que las clases anteriores lanzaban la excepción QuestFailedException. La he hecho de forma que herede de Exception de Java.
+	
+```java
+public class QuestFailedException extends Exception {
+	
+	  public QuestFailedException() {
+	    super();
+	  }
+	  public QuestFailedException(String message) {
+	    super(message);
+	  }
+	  public QuestFailedException(Throwable cause) {
+	    super(cause);
+	  }
+	  public QuestFailedException(String message, Throwable cause) {
+	    super(message, cause);
+	  }
+}
+```
+	
+Finalmente, he creado una clase Main con la función main dentro. Crea un objeto context de ApplicationContext. El objeto context se refiere al contexto de la aplicación de Spring, que se inicializa al leer y cargar el archivo applicationContext.xml con la información sobre las dependencias. La siguiente línea obtiene una instancia de la clase Knight del contenedor de Spring, utilizando el nombre knight y especificando el tipo Knight<HolyGrail> como un parámetro genérico. La instancia que se obtiene será una instancia de la clase Knight que está configurada en el archivo de configuración de Spring, y que utiliza una instancia de HolyGrail para realizar su trabajo.
+	
+Creo un objeto HolyGrail llamado grail e imprimo sus características por pantalla y llamo al método use.
+
+```java
+public static void main(String[] args) {
+	@SuppressWarnings("resource")
+	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+	Knight<HolyGrail> knight = context.getBean("knight", Knight.class);
+	
+	try {
+		HolyGrail grail = knight.embarkOnQuest();
+		System.out.println("The grail is " + grail.getDescription());
+		System.out.println("The origin of the grail is " + grail.getOrigin());
+		grail.use();
+	} catch (QuestFailedException e) {
+		e.printStackTrace();
+	}
+}
+```
+	
+## Ejecución
+	
+Al ser un proyecto Maven, sólo tengo que darle a ejecutar dentro de eclipse y podemos comprobar que funciona.
+
+<image src="/img/itWorks.png" alt="Funciona">
+
