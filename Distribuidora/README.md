@@ -13,6 +13,8 @@ Nota importante: los datos del pedido que se han recogido a través del formular
 
 ![w:640](b.png)
 
+En este diagrama, "Empresa" crea el formularioPedido, luego lo envía al "procesadorFormularios" para su procesamiento. El "procesadorFormularios" crea un "generarPedidoAlmacenCommand" utilizando el formularioPedido como parámetro. Finalmente, el "generarPedidoAlmacenCommand" se ejecuta, generando y enviando el pedido al "almacen", donde se realiza el procesamiento correspondiente.
+
 ## Ejercicio c
 
 A la hora de mostrar los distintos formularios en pantalla surgen distintas necesidades, ya que algunos formularios serán más largos que otros, necesitando el uso de la barra de desplazamiento solo los largos. Además se contempla la posibilidad de resaltar algunos de ellos en función de su importancia y/o urgencia con un borde de un determinado color y/o grosor. Nótese que un informe que se quiera resaltar con un
@@ -20,3 +22,7 @@ borde puede también ser largo. Nótese también que un formulario puede que se 
 ¿Qué patrón de diseño se podría utilizar en este caso de forma que el hecho de cómo se muestra cada formulario pasara desapercibido para el resto del código? Incluir el diseño de dicho patrón.
 
 ![w:640](c.png)
+
+Se puede utilizar el patrón Decorator, que permite adjuntar responsabilidades adicionales a un objeto dinámicamente, sin afectar a otros objetos de la misma clase.
+
+En este caso, se pueden definir decoradores que agreguen características específicas a los formularios, como la barra de desplazamiento, el resaltado y múltiples bordes. Estos decoradores pueden combinarse y aplicarse de manera flexible a los formularios sin afectar la forma en que se muestran en el resto del código.
