@@ -1,0 +1,24 @@
+classDiagram
+    class FormularioBase {
+        mostrar(): void
+    }
+
+    class FormularioDecorator {
+        - formulario: FormularioBase
+        + mostrar(): void
+    }
+
+    class FormularioConBarraDesplazamiento {
+        + mostrar(): void
+    }
+
+    class FormularioResaltado {
+        - color: string
+        - grosor: string
+        + mostrar(): void
+    }
+
+    FormularioBase <|-- FormularioDecorator
+    FormularioDecorator <|-- FormularioConBarraDesplazamiento
+    FormularioDecorator <|-- FormularioResaltado
+

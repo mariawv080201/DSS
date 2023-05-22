@@ -1,0 +1,38 @@
+classDiagram
+    class Formulario {
+        -id: string
+
+        +procesar(): Pedido
+    }
+    
+    class GenerarPedidoAlmacenCommand {
+        -formulario: Formulario
+        -pedido: Pedido
+        
+        +ejecutar(): void
+    }
+    
+    class ProcesadorFormularios {
+        -comandos: Comando[]
+        
+        +agregarComando(comando: Comando): void
+        +procesarFormulario(formulario: Formulario): void
+    }
+    
+    class Pedido {
+        -id: string
+    }
+    
+    class Almacen {
+        -id: string
+        -localizacion: string
+
+        +recibirPedido(pedido: Pedido): void
+    }
+    
+    Formulario --> GenerarPedidoAlmacenCommand
+    GenerarPedidoAlmacenCommand --> Comando
+    ProcesadorFormularios --> Comando
+    GenerarPedidoAlmacenCommand --> Pedido
+    Pedido --> Almacen
+

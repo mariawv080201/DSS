@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant Empresa
+    participant formularioPedido
+    participant procesadorFormularios
+    participant generarPedidoAlmacenCommand
+    participant almacen
+
+    Empresa ->> formularioPedido: Crear formularioPedido
+    Empresa ->> procesadorFormularios: Procesar formularioPedido
+    procesadorFormularios ->> generarPedidoAlmacenCommand: Crear generarPedidoAlmacenCommand(formularioPedido)
+    generarPedidoAlmacenCommand ->> generarPedidoAlmacenCommand: ejecutar()
+    generarPedidoAlmacenCommand ->> almacen: Enviar pedido al almacen
+    almacen ->> almacen: Procesar pedido
+
