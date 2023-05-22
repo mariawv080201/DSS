@@ -19,4 +19,4 @@ A la hora de mostrar los distintos formularios en pantalla surgen distintas nece
 borde puede también ser largo. Nótese también que un formulario puede que se deba resaltar por más de un motivo, lo que implicaría la superposición de varios bordes.
 ¿Qué patrón de diseño se podría utilizar en este caso de forma que el hecho de cómo se muestra cada formulario pasara desapercibido para el resto del código? Incluir el diseño de dicho patrón.
 
-![w:640](b.png)
+![w:640](c.png)
